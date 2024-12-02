@@ -1,48 +1,62 @@
-import { PropsWithChildren } from 'react';
 import Header from '../header';
 import Footer from '../footer';
+import { Outlet, useLocation } from 'react-router-dom';
+import { AppRoute, ID_PARAM } from '../../const';
 
 type LayoutProps = {
-  currentPage: string;
   offersCount: number;
 }
 
-type PageInfo = {[key: string]: {layoutClassName: string; shouldShowUserInfo: boolean; shouldShowFooter: boolean}};
+type PageInfo = {[key: string]: {layoutClassName: string; shouldShowUserInfo: boolean; shouldShowFooter: boolean; isActiveLogo: boolean}};
 
-const getPageInfo = (page: string, offersCount: number) => {
+const getPageInfo = (pathname: string, offersCount: number) => {
+  const realPathname = pathname.includes(AppRoute.Offer.replace(ID_PARAM, '')) ? AppRoute.Offer : pathname;
+
+  const defaultPageInfo = {
+    layoutClassName: '',
+    shouldShowUserInfo: false,
+    shouldShowFooter: false,
+    isActiveLogo: true,
+  };
+
   const pageInfo: PageInfo = {
-    main: {
+    [AppRoute.Root]: {
       layoutClassName: ' page--gray page--main',
       shouldShowUserInfo: true,
       shouldShowFooter: false,
+      isActiveLogo: false,
     },
-    offer: {
+    [AppRoute.Offer]: {
       layoutClassName: '',
       shouldShowUserInfo: true,
       shouldShowFooter: false,
+      isActiveLogo: true,
     },
-    favorites: {
+    [AppRoute.Favorites]: {
       layoutClassName: offersCount > 0 ? '' : ' page--favorites-empty',
       shouldShowUserInfo: true,
       shouldShowFooter: true,
+      isActiveLogo: true,
     },
-    login: {
+    [AppRoute.Login]: {
       layoutClassName: ' page--gray page--login',
       shouldShowUserInfo: false,
       shouldShowFooter: false,
+      isActiveLogo: true,
     },
   };
 
-  return pageInfo[page];
+  return pageInfo[realPathname] || defaultPageInfo;
 };
 
-export default function Layout({children, currentPage, offersCount}: PropsWithChildren<LayoutProps>) {
-  const {layoutClassName, shouldShowUserInfo, shouldShowFooter} = getPageInfo(currentPage, offersCount);
+export default function Layout({offersCount}: LayoutProps) {
+  const {pathname} = useLocation();
+  const {layoutClassName, shouldShowUserInfo, shouldShowFooter, isActiveLogo} = getPageInfo(pathname, offersCount);
 
   return (
     <div className={`page${layoutClassName}`}>
-      <Header shouldShowUserInfo={shouldShowUserInfo} />
-      {children}
+      <Header shouldShowUserInfo={shouldShowUserInfo} isActiveLogo={isActiveLogo} offersCount={offersCount} />
+      <Outlet />
       {shouldShowFooter ? <Footer /> : null}
     </div>
   );
