@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/layout';
+import { AppRoute } from './const';
+import MainPage from './pages/main-page';
+import OfferPage from './pages/offer-page';
 import FavoritesPage from './pages/favorites-page';
 import LoginPage from './pages/login-page';
-import MainPage from './pages/main-page';
-import OfferPage from './pages/offer-page/offer-page';
-import { AppRoute } from './const';
 import NotFoundPage from './pages/not-found-page';
 import PrivateRoute from './components/private-route';
 
@@ -17,8 +17,14 @@ export default function App({offersCount}: AppProps) {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<Layout offersCount={offersCount} />}>
-          <Route index element={<MainPage offersCount={offersCount} />} />
-          <Route path={AppRoute.Offer} element={<OfferPage />} />
+          <Route
+            index
+            element={<MainPage offersCount={offersCount} />}
+          />
+          <Route
+            path={AppRoute.Offer}
+            element={<OfferPage />}
+          />
           <Route
             path={AppRoute.Favorites}
             element={

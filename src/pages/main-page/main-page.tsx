@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 type MainPageProps = {
   offersCount: number;
 }
@@ -69,9 +72,9 @@ export default function MainPage({offersCount}: MainPageProps) {
                     <span>Premium</span>
                   </div>
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <Link to={AppRoute.Offer}>
                       <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="place-card__info">
                     <div className="place-card__price-wrapper">
@@ -93,7 +96,7 @@ export default function MainPage({offersCount}: MainPageProps) {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <Link to={AppRoute.Offer}>Beautiful &amp; luxurious apartment at great location</Link>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -101,9 +104,9 @@ export default function MainPage({offersCount}: MainPageProps) {
 
                 <article className="cities__card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <Link to={AppRoute.Offer}>
                       <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="place-card__info">
                     <div className="place-card__price-wrapper">
@@ -125,7 +128,7 @@ export default function MainPage({offersCount}: MainPageProps) {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <Link to={AppRoute.Offer}>Wood and stone place</Link>
                     </h2>
                     <p className="place-card__type">Room</p>
                   </div>
@@ -133,9 +136,9 @@ export default function MainPage({offersCount}: MainPageProps) {
 
                 <article className="cities__card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <Link to={AppRoute.Offer}>
                       <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="place-card__info">
                     <div className="place-card__price-wrapper">
@@ -157,7 +160,7 @@ export default function MainPage({offersCount}: MainPageProps) {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
+                      <Link to={AppRoute.Offer}>Canal View Prinsengracht</Link>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -168,9 +171,9 @@ export default function MainPage({offersCount}: MainPageProps) {
                     <span>Premium</span>
                   </div>
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <Link to={AppRoute.Offer}>
                       <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="place-card__info">
                     <div className="place-card__price-wrapper">
@@ -192,7 +195,7 @@ export default function MainPage({offersCount}: MainPageProps) {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
+                      <Link to={AppRoute.Offer}>Nice, cozy, warm big bed apartment</Link>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -200,9 +203,9 @@ export default function MainPage({offersCount}: MainPageProps) {
 
                 <article className="cities__card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <Link to={AppRoute.Offer}>
                       <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="place-card__info">
                     <div className="place-card__price-wrapper">
@@ -224,7 +227,7 @@ export default function MainPage({offersCount}: MainPageProps) {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <Link to={AppRoute.Offer}>Wood and stone place</Link>
                     </h2>
                     <p className="place-card__type">Room</p>
                   </div>
