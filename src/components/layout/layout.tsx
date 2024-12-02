@@ -8,11 +8,11 @@ type LayoutProps = {
 }
 
 export default function Layout({offersCount}: LayoutProps) {
-  const {layoutClassName, shouldShowUserInfo, shouldShowFooter, isActiveLogo} = usePageInfo(offersCount);
+  const {layoutClassName, shouldShowUserInfo, shouldShowFooter} = usePageInfo(offersCount);
 
   return (
     <div className={`page${layoutClassName}`}>
-      <Header shouldShowUserInfo={shouldShowUserInfo} isActiveLogo={isActiveLogo} offersCount={offersCount} />
+      <Header shouldShowUserInfo={shouldShowUserInfo} offersCount={offersCount} />
       <Outlet />
       {shouldShowFooter ? <Footer /> : null}
     </div>

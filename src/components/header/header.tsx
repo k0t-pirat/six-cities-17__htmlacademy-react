@@ -5,11 +5,10 @@ import Logo from '../logo';
 
 type HeaderProps = {
   shouldShowUserInfo: boolean;
-  isActiveLogo: boolean;
   offersCount: number;
 }
 
-export default function Header({shouldShowUserInfo, isActiveLogo, offersCount}: HeaderProps) {
+export default function Header({shouldShowUserInfo, offersCount}: HeaderProps) {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
@@ -17,7 +16,7 @@ export default function Header({shouldShowUserInfo, isActiveLogo, offersCount}: 
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo isActiveLogo={isActiveLogo} />
+            <Logo to={AppRoute.Root} />
           </div>
           {shouldShowUserInfo ? (
             <nav className="header__nav">

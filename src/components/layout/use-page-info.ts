@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { AppRoute, ID_PARAM } from '../../const';
+import { useEffect } from 'react';
 
-type PageInfo = {layoutClassName: string; shouldShowUserInfo: boolean; shouldShowFooter: boolean; isActiveLogo: boolean}
+type PageInfo = {layoutClassName: string; shouldShowUserInfo: boolean; shouldShowFooter: boolean}
 type PagesInfoSlice = {[key: string]: PageInfo};
 
 const getPageInfo = (pathname: string, offersCount: number) => {
@@ -11,7 +12,6 @@ const getPageInfo = (pathname: string, offersCount: number) => {
     layoutClassName: '',
     shouldShowUserInfo: false,
     shouldShowFooter: false,
-    isActiveLogo: true,
   };
 
   const pageInfo: PagesInfoSlice = {
@@ -19,25 +19,21 @@ const getPageInfo = (pathname: string, offersCount: number) => {
       layoutClassName: ' page--gray page--main',
       shouldShowUserInfo: true,
       shouldShowFooter: false,
-      isActiveLogo: false,
     },
     [AppRoute.Offer]: {
       layoutClassName: '',
       shouldShowUserInfo: true,
       shouldShowFooter: false,
-      isActiveLogo: true,
     },
     [AppRoute.Favorites]: {
       layoutClassName: offersCount > 0 ? '' : ' page--favorites-empty',
       shouldShowUserInfo: true,
       shouldShowFooter: true,
-      isActiveLogo: true,
     },
     [AppRoute.Login]: {
       layoutClassName: ' page--gray page--login',
       shouldShowUserInfo: false,
       shouldShowFooter: false,
-      isActiveLogo: true,
     },
   };
 
@@ -46,5 +42,15 @@ const getPageInfo = (pathname: string, offersCount: number) => {
 
 export default function usePageInfo(offersCount: number): PageInfo {
   const {pathname} = useLocation();
+
+  // temp before module4-task1
+  if (pathname.includes(AppRoute.Offer.replace(ID_PARAM, ''))) {
+    window.scrollTo(0, 0);
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return getPageInfo(pathname, offersCount);
 }
