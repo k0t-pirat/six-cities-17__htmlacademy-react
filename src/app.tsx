@@ -7,19 +7,19 @@ import FavoritesPage from './pages/favorites-page';
 import LoginPage from './pages/login-page';
 import NotFoundPage from './pages/not-found-page';
 import PrivateRoute from './components/private-route';
+import { getMockFavoriteOfferCards, getMockOfferCards } from './mocks/offer-cards';
 
-type AppProps = {
-  offersCount: number;
-}
+export default function App() {
+  const offerCards = getMockOfferCards();
+  const favoriteOfferCards = getMockFavoriteOfferCards();
 
-export default function App({offersCount}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Root} element={<Layout offersCount={offersCount} />}>
+        <Route path={AppRoute.Root} element={<Layout favoriteOffersCount={favoriteOfferCards.length} />}>
           <Route
             index
-            element={<MainPage offersCount={offersCount} />}
+            element={<MainPage offerCards={offerCards} />}
           />
           <Route
             path={AppRoute.Offer}
@@ -29,7 +29,7 @@ export default function App({offersCount}: AppProps) {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute>
-                <FavoritesPage offersCount={offersCount} />
+                <FavoritesPage favoriteOfferCards={favoriteOfferCards} />
               </PrivateRoute>
             }
           />

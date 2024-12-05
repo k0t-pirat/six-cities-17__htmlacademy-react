@@ -4,15 +4,15 @@ import { Outlet } from 'react-router-dom';
 import usePageInfo from './use-page-info';
 
 type LayoutProps = {
-  offersCount: number;
+  favoriteOffersCount: number;
 }
 
-export default function Layout({offersCount}: LayoutProps) {
-  const {layoutClassName, shouldShowUserInfo, shouldShowFooter} = usePageInfo(offersCount);
+export default function Layout({favoriteOffersCount}: LayoutProps) {
+  const {layoutClassName, shouldShowUserInfo, shouldShowFooter} = usePageInfo(favoriteOffersCount);
 
   return (
     <div className={`page${layoutClassName}`}>
-      <Header shouldShowUserInfo={shouldShowUserInfo} offersCount={offersCount} />
+      <Header shouldShowUserInfo={shouldShowUserInfo} favoriteOffersCount={favoriteOffersCount} />
       <Outlet />
       {shouldShowFooter ? <Footer /> : null}
     </div>

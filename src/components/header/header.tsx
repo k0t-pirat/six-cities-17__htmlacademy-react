@@ -5,10 +5,10 @@ import Logo from '../logo';
 
 type HeaderProps = {
   shouldShowUserInfo: boolean;
-  offersCount: number;
+  favoriteOffersCount: number;
 }
 
-export default function Header({shouldShowUserInfo, offersCount}: HeaderProps) {
+export default function Header({shouldShowUserInfo, favoriteOffersCount}: HeaderProps) {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
@@ -27,7 +27,7 @@ export default function Header({shouldShowUserInfo, offersCount}: HeaderProps) {
                     {authorizationStatus === AuthorizarionStatus.Auth ? (
                       <>
                         <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                        <span className="header__favorite-count">{offersCount}</span>
+                        <span className="header__favorite-count">{favoriteOffersCount}</span>
                       </>
                     ) : (
                       <span className="header__login">Sign in</span>
