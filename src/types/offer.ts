@@ -1,11 +1,5 @@
 import { User } from './user';
 
-type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
-
 type OfferCardTemplate = {
   id: string;
   title: string;
@@ -32,6 +26,21 @@ type FullOfferTemplate = {
 
 type OfferPreviewImage = {
   previewImage: string;
+}
+
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
+export type MapPoint = {
+  id: string;
+  city: {
+    name: string;
+    location: Location;
+  };
+  location: Location;
 }
 
 export type OfferCard = OfferCardTemplate & OfferPreviewImage;

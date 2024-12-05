@@ -1,5 +1,33 @@
 import { OfferCard } from '../types/offer';
 
+const locations = [
+  {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8
+  },
+  {
+    'latitude': 52.3609553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8
+  },
+  {
+    'latitude': 52.3909553943508,
+    'longitude': 4.929309666406198,
+    'zoom': 8
+  },
+  {
+    'latitude': 52.3809553943508,
+    'longitude': 4.939309666406198,
+    'zoom': 8
+  },
+  {
+    'latitude': 51.1352,
+    'longitude': 6.4621,
+    'zoom': 8
+  },
+];
+
 export const mockOfferCards: OfferCard[] = [
   {
     'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
@@ -14,11 +42,7 @@ export const mockOfferCards: OfferCard[] = [
         'zoom': 8
       }
     },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
+    'location': locations[0],
     'isFavorite': true,
     'isPremium': false,
     'rating': 4,
@@ -37,11 +61,7 @@ export const mockOfferCards: OfferCard[] = [
         'zoom': 8
       }
     },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
+    'location': locations[1],
     'isFavorite': true,
     'isPremium': false,
     'rating': 3,
@@ -60,11 +80,7 @@ export const mockOfferCards: OfferCard[] = [
         'zoom': 8
       }
     },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
+    'location': locations[2],
     'isFavorite': false,
     'isPremium': true,
     'rating': 5,
@@ -83,11 +99,7 @@ export const mockOfferCards: OfferCard[] = [
         'zoom': 8
       }
     },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
+    'location': locations[3],
     'isFavorite': false,
     'isPremium': false,
     'rating': 3,
@@ -106,11 +118,7 @@ export const mockOfferCards: OfferCard[] = [
         'zoom': 8
       }
     },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
+    'location': locations[4],
     'isFavorite': true,
     'isPremium': true,
     'rating': 4,

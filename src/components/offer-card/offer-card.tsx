@@ -7,10 +7,10 @@ import { getRatingInPercents, upFirstLetter } from '../../helpers';
 type OfferCardProps = {
   offerCard: TOfferCard;
   className: string;
-  setActiveCardId?: (id: string) => void;
+  setActiveOfferId?: (id: string) => void;
 }
 
-export default function OfferCard({offerCard, className, setActiveCardId}: OfferCardProps) {
+export default function OfferCard({offerCard, className, setActiveOfferId}: OfferCardProps) {
   const {isPremium, previewImage, price, isFavorite, rating, title, type} = offerCard;
 
   const imageWidth = className === 'favorites' ? '150' : '260';
@@ -19,8 +19,8 @@ export default function OfferCard({offerCard, className, setActiveCardId}: Offer
   return (
     <article
       className={`${className}__card place-card`}
-      onMouseEnter={setActiveCardId && (() => setActiveCardId(offerCard.id))}
-      onMouseLeave={setActiveCardId && (() => setActiveCardId(''))}
+      onMouseEnter={setActiveOfferId && (() => setActiveOfferId(offerCard.id))}
+      onMouseLeave={setActiveOfferId && (() => setActiveOfferId(''))}
     >
       {isPremium ? (
         <div className="place-card__mark">

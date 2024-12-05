@@ -1,36 +1,45 @@
 import { useEffect, useRef } from 'react';
+import useMap from './use-map';
 import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { MapInfo } from './const';
+import { MarkerInfo } from './const';
+import { MapPoint } from '../../types/offer';
 
-const CITY_TEMP = {
-  'latitude': 52.35514938496378,
-  'longitude': 4.673877537499948,
-  'zoom': 8
-};
+type MapProps = {
+  mapPoints: MapPoint[];
+  activeOfferId: string;
+}
 
-export default function Map() {
+export default function Map({mapPoints, activeOfferId}: MapProps) {
   const mapRef = useRef(null);
-  const isRenderedRef = useRef(false);
-  const city = CITY_TEMP;
+  const currentCityLocation = mapPoints[0].city.location;
+  const map = useMap(mapRef, currentCityLocation);
 
   useEffect(() => {
-    if (mapRef.current !== null && !isRenderedRef.current) {
-      const instance = leaflet.map(mapRef.current, {
-        center: {
-          lat: city.latitude,
-          lng: city.longitude,
-        },
-        zoom: city.zoom,
+    if (map) {
+      const defaultCustomIcon = leaflet.icon({
+        iconUrl: MarkerInfo.UrlDefault,
+        iconSize: [MarkerInfo.Width, MarkerInfo.Height],
+        iconAnchor: [MarkerInfo.Left, MarkerInfo.Top],
       });
 
-      leaflet
-        .tileLayer(MapInfo.TileLayer, { attribution: MapInfo.Attribution })
-        .addTo(instance);
+      const activeCustomIcon = leaflet.icon({
+        iconUrl: MarkerInfo.UrlActive,
+        iconSize: [MarkerInfo.Width, MarkerInfo.Height],
+        iconAnchor: [MarkerInfo.Left, MarkerInfo.Top],
+      });
 
-      isRenderedRef.current = true;
+      mapPoints.forEach((point) => {
+        leaflet
+          .marker({
+            lat: point.location.latitude,
+            lng: point.location.longitude,
+          }, {
+            icon: activeOfferId === point.id ? activeCustomIcon : defaultCustomIcon,
+          })
+          .addTo(map);
+      });
     }
-  }, [mapRef, city]);
+  }, [map, mapPoints, activeOfferId]);
 
   return (
     <section className="cities__map map" ref={mapRef}></section>

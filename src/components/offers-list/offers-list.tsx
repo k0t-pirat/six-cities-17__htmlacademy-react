@@ -3,10 +3,10 @@ import OfferCard from '../offer-card';
 
 type OffersListProps = {
   offerCards: TOfferCard[];
-  setActiveCardId: (id: string) => void;
+  setActiveOfferId: (id: string) => void;
 }
 
-export default function OffersList({offerCards, setActiveCardId}: OffersListProps) {
+export default function OffersList({offerCards, setActiveOfferId}: OffersListProps) {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -28,7 +28,7 @@ export default function OffersList({offerCards, setActiveCardId}: OffersListProp
       </form>
       <div className="cities__places-list places__list tabs__content">
         {offerCards.map((offerCard) => (
-          <OfferCard key={offerCard.id} offerCard={offerCard} className="cities" setActiveCardId={setActiveCardId} />
+          <OfferCard key={offerCard.id} offerCard={offerCard} className="cities" setActiveOfferId={setActiveOfferId} />
         ))}
       </div>
     </section>
