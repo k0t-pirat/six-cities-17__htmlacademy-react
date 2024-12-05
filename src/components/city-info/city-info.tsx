@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { OfferCard } from '../../types/offer';
 import OffersEmpty from '../offers-empty';
 import OffersList from '../offers-list';
+import Map from '../map';
 
 type CityInfoProps = {
   offerCards: OfferCard[];
@@ -17,7 +18,7 @@ export default function CityInfo({offerCards}: CityInfoProps) {
       <div className={`cities__places-container container${offerCards.length > 0 ? '' : ' cities__places-container--empty'}`}>
         {offerCards.length > 0 ? <OffersList offerCards={offerCards} setActiveCardId={setActiveCardId} /> : <OffersEmpty />}
         <div className="cities__right-section">
-          {offerCards.length > 0 ? <section className="cities__map map"></section> : null}
+          {offerCards.length > 0 ? <Map /> : null}
         </div>
       </div>
     </div>
