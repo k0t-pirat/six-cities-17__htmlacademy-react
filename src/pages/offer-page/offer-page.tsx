@@ -1,17 +1,21 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import ReviewsList from '../../components/reviews-list';
 import { getMockReviews } from '../../mocks/reviews';
-import { getFirstMockOffer } from '../../mocks/offers';
+import { getMockOffer } from '../../mocks/offers';
 import OfferContainer from '../../components/offer-container';
 import NearPlaces from '../../components/near-places';
-import { getFirstMockNearOfferCards } from '../../mocks/offer-cards';
+import { getMockNearOfferCards } from '../../mocks/offer-cards';
+import { AppRoute } from '../../const';
 
 export default function OfferPage() {
-  const params = useParams();
+  const {id: offerId = ''} = useParams();
+  const currentOffer = getMockOffer(offerId);
+  const nearOfferCards = getMockNearOfferCards(offerId);
   const reviews = getMockReviews();
-  const currentOffer = getFirstMockOffer();
-  const nearOfferCards = getFirstMockNearOfferCards();
-  // const currentOffer = getMockO
+
+  if (!currentOffer) {
+    return <Navigate to={AppRoute.NotFound} replace />;
+  }
 
   return (
     <main className="page__main page__main--offer">

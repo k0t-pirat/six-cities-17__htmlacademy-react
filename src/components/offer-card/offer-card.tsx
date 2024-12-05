@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, ID_PARAM } from '../../const';
 import { OfferCard as TOfferCard } from '../../types/offer';
 import FavoriteButton from '../favorite-button';
 import { getRatingInPercents, upFirstLetter } from '../../helpers';
@@ -28,7 +28,7 @@ export default function OfferCard({offerCard, className, setActiveCardId}: Offer
         </div>
       ) : null}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-        <Link to={AppRoute.Offer}>
+        <Link to={AppRoute.Offer.replace(ID_PARAM, offerCard.id)}>
           <img className="place-card__image" src={previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
         </Link>
       </div>
@@ -47,7 +47,7 @@ export default function OfferCard({offerCard, className, setActiveCardId}: Offer
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{title}</Link>
+          <Link to={AppRoute.Offer.replace(ID_PARAM, offerCard.id)}>{title}</Link>
         </h2>
         <p className="place-card__type">{upFirstLetter(type)}</p>
       </div>

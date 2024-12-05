@@ -120,4 +120,4 @@ export const mockOfferCards: OfferCard[] = [
 
 export const getMockOfferCards = () => mockOfferCards;
 export const getMockFavoriteOfferCards = () => mockOfferCards.filter((offer) => offer.isFavorite);
-export const getFirstMockNearOfferCards = () => mockOfferCards.slice(0, 3);
+export const getMockNearOfferCards = (offerId: string) => mockOfferCards.filter((offer) => offer.id !== offerId).slice(0, 3);
