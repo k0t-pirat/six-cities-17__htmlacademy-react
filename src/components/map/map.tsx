@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import useMap from './use-map';
-import leaflet from 'leaflet';
-import { MarkerInfo } from './const';
 import { MapPoint } from '../../types/offer';
+import { createMarker, Marker } from './marker';
 
 type MapProps = {
   mapPoints: MapPoint[];
@@ -16,28 +15,17 @@ export default function Map({mapPoints, activeOfferId}: MapProps) {
 
   useEffect(() => {
     if (map) {
-      const defaultCustomIcon = leaflet.icon({
-        iconUrl: MarkerInfo.UrlDefault,
-        iconSize: [MarkerInfo.Width, MarkerInfo.Height],
-        iconAnchor: [MarkerInfo.Left, MarkerInfo.Top],
-      });
-
-      const activeCustomIcon = leaflet.icon({
-        iconUrl: MarkerInfo.UrlActive,
-        iconSize: [MarkerInfo.Width, MarkerInfo.Height],
-        iconAnchor: [MarkerInfo.Left, MarkerInfo.Top],
-      });
-
+      const markers: Marker[] = [];
       mapPoints.forEach((point) => {
-        leaflet
-          .marker({
-            lat: point.location.latitude,
-            lng: point.location.longitude,
-          }, {
-            icon: activeOfferId === point.id ? activeCustomIcon : defaultCustomIcon,
-          })
-          .addTo(map);
+        const marker = createMarker(point, activeOfferId).addTo(map);
+        markers.push(marker);
       });
+
+      return () => {
+        markers.forEach((marker) => {
+          marker.removeFrom(map);
+        });
+      };
     }
   }, [map, mapPoints, activeOfferId]);
 
