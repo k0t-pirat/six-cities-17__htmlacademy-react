@@ -1,15 +1,17 @@
 import { PropsWithChildren } from 'react';
-import { Offer } from '../../types/offer';
+import { MapPoint, Offer } from '../../types/offer';
 import FavoriteButton from '../favorite-button';
 import { getRatingInPercents } from '../../helpers';
+import Map from '../map';
 
 type OfferContainerProps = {
   currentOffer: Offer;
+  mapPoints: MapPoint[];
 }
 
 const MAX_IMAGES_COUNT = 6;
 
-export default function OfferContainer({currentOffer, children}: PropsWithChildren<OfferContainerProps>) {
+export default function OfferContainer({currentOffer, mapPoints, children}: PropsWithChildren<OfferContainerProps>) {
   const {images, isPremium, title, isFavorite, rating, bedrooms, maxAdults, price, goods, host, description} = currentOffer;
 
   return (
@@ -84,7 +86,7 @@ export default function OfferContainer({currentOffer, children}: PropsWithChildr
           {children}
         </div>
       </div>
-      <section className="offer__map map"></section>
+      <Map mapPoints={mapPoints} activeOfferId={currentOffer.id} className="offer" />
     </section>
   );
 }

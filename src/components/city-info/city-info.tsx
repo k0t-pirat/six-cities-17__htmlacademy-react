@@ -3,12 +3,11 @@ import { OfferCard } from '../../types/offer';
 import OffersEmpty from '../offers-empty';
 import OffersList from '../offers-list';
 import Map from '../map';
+import { getMapPoints } from '../../helpers';
 
 type CityInfoProps = {
   offerCards: OfferCard[];
 }
-
-const getMapPoints = (offersCards: OfferCard[]) => offersCards.map(({id, city, location}) => ({id, city, location}));
 
 export default function CityInfo({offerCards}: CityInfoProps) {
   const [activeOfferId, setActiveOfferId] = useState('');
@@ -19,7 +18,7 @@ export default function CityInfo({offerCards}: CityInfoProps) {
       <div className={`cities__places-container container${offerCards.length > 0 ? '' : ' cities__places-container--empty'}`}>
         {offerCards.length > 0 ? <OffersList offerCards={offerCards} setActiveOfferId={setActiveOfferId} /> : <OffersEmpty />}
         <div className="cities__right-section">
-          {offerCards.length > 0 ? <Map mapPoints={mapPoints} activeOfferId={activeOfferId} /> : null}
+          {offerCards.length > 0 ? <Map mapPoints={mapPoints} activeOfferId={activeOfferId} className="cities" /> : null}
         </div>
       </div>
     </div>

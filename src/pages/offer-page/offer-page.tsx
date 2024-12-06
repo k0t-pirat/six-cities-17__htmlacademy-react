@@ -6,6 +6,7 @@ import OfferContainer from '../../components/offer-container';
 import NearPlaces from '../../components/near-places';
 import { getMockNearOfferCards } from '../../mocks/offer-cards';
 import { AppRoute } from '../../const';
+import { getMapPoints } from '../../helpers';
 
 export default function OfferPage() {
   const {id: offerId = ''} = useParams();
@@ -19,7 +20,7 @@ export default function OfferPage() {
 
   return (
     <main className="page__main page__main--offer">
-      <OfferContainer currentOffer={currentOffer}>
+      <OfferContainer currentOffer={currentOffer} mapPoints={getMapPoints(nearOfferCards, currentOffer)}>
         <ReviewsList reviews={reviews} />
       </OfferContainer>
       <div className="container">

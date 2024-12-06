@@ -6,12 +6,16 @@ import { createMarker, Marker } from './marker';
 type MapProps = {
   mapPoints: MapPoint[];
   activeOfferId: string;
+  className?: string;
 }
 
-export default function Map({mapPoints, activeOfferId}: MapProps) {
+const DEFAULT_CLASS_NAME = 'cities';
+
+export default function Map({mapPoints, activeOfferId, className = DEFAULT_CLASS_NAME}: MapProps) {
   const mapRef = useRef(null);
   const currentCityLocation = mapPoints[0].city.location;
-  const map = useMap(mapRef, currentCityLocation);
+  const shouldZoomOnScroll = className === DEFAULT_CLASS_NAME;
+  const map = useMap(mapRef, currentCityLocation, shouldZoomOnScroll);
 
   useEffect(() => {
     if (map) {
@@ -30,6 +34,6 @@ export default function Map({mapPoints, activeOfferId}: MapProps) {
   }, [map, mapPoints, activeOfferId]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={`${className}__map map`} ref={mapRef}></section>
   );
 }

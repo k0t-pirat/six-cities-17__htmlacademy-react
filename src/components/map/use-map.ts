@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { MapInfo } from './const';
 import { Location } from '../../types/offer';
 
-export default function useMap(mapRef: RefObject<HTMLElement | null>, location: Location) {
+export default function useMap(mapRef: RefObject<HTMLElement | null>, location: Location, shouldZoomOnScroll: boolean) {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
@@ -16,6 +16,7 @@ export default function useMap(mapRef: RefObject<HTMLElement | null>, location: 
           lng: location.longitude,
         },
         zoom: location.zoom,
+        scrollWheelZoom: shouldZoomOnScroll,
       });
 
       leaflet
@@ -25,7 +26,7 @@ export default function useMap(mapRef: RefObject<HTMLElement | null>, location: 
       setMap(mapInstance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, location]);
+  }, [mapRef, location, shouldZoomOnScroll]);
 
   return map;
 }
