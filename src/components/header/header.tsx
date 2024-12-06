@@ -4,11 +4,11 @@ import { getAuthorizationStatus } from '../../mocks/authorization-status';
 import Logo from '../logo';
 
 type HeaderProps = {
-  shouldShowUserInfo: boolean;
+  hasUserInfo: boolean;
   favoriteOffersCount: number;
 }
 
-export default function Header({shouldShowUserInfo, favoriteOffersCount}: HeaderProps) {
+export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
@@ -18,7 +18,7 @@ export default function Header({shouldShowUserInfo, favoriteOffersCount}: Header
           <div className="header__left">
             <Logo to={AppRoute.Root} />
           </div>
-          {shouldShowUserInfo ? (
+          {hasUserInfo ? (
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
