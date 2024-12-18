@@ -7,11 +7,10 @@ import FavoritesPage from './pages/favorites-page';
 import LoginPage from './pages/login-page';
 import NotFoundPage from './pages/not-found-page';
 import PrivateRoute from './components/private-route';
-import { getMockFavoriteOfferCards, getMockOfferCards } from './mocks/offer-cards';
+import { getMockFavoriteOfferCards } from './mocks/offer-cards';
 import { HelmetProvider } from 'react-helmet-async';
 
 export default function App() {
-  const offerCards = getMockOfferCards();
   const favoriteOfferCards = getMockFavoriteOfferCards();
 
   return (
@@ -21,7 +20,7 @@ export default function App() {
           <Route path={AppRoute.Root} element={<Layout favoriteOffersCount={favoriteOfferCards.length} />}>
             <Route
               index
-              element={<MainPage offerCards={offerCards} />}
+              element={<MainPage />}
             />
             <Route
               path={AppRoute.Offer}
