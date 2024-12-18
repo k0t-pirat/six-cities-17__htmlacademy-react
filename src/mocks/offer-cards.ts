@@ -113,8 +113,8 @@ export const mockOfferCards: OfferCard[] = [
     'city': {
       'name': 'Dusseldorf',
       'location': {
-        'latitude': 52.35514938496378,
-        'longitude': 4.673877537499948,
+        'latitude': 51.1352,
+        'longitude': 6.4621,
         'zoom': 8
       }
     },
