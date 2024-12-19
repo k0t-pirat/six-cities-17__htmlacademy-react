@@ -1,3 +1,4 @@
+import { SortItem } from './const';
 import { Offer, OfferCard } from './types/offer';
 
 const STARS_MULTIPLIER = 20;
@@ -18,3 +19,12 @@ export const getMapPoints = (offerCards: OfferCard[], mainOffer?: Offer) => {
 
   return mapPoints;
 };
+
+const sortBy = {
+  [SortItem.Popular]: (offerCards: OfferCard[]) => [...offerCards],
+  [SortItem.PriceLow]: (offerCards: OfferCard[]) => [...offerCards].sort((leftCard, rightCard) => leftCard.price - rightCard.price),
+  [SortItem.PriceHigh]: (offerCards: OfferCard[]) => [...offerCards].sort((leftCard, rightCard) => rightCard.price - leftCard.price),
+  [SortItem.Rating]: (offerCards: OfferCard[]) => [...offerCards].sort((leftCard, rightCard) => rightCard.rating - leftCard.rating),
+};
+
+export const sortOffers = (offerCards: OfferCard[], sortType: SortItem) => sortBy[sortType](offerCards);
