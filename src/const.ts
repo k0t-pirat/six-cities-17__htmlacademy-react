@@ -9,6 +9,14 @@ export enum AppRoute {
   NotFound = '*',
 }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum AuthorizarionStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

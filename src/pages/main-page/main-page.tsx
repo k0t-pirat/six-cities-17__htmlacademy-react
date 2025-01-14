@@ -1,11 +1,17 @@
 import CityInfo from '../../components/city-info';
 import Locations from '../../components/locations';
+import Spinner from '../../components/spinner/spinner';
 import { useAppSelector } from '../../hooks';
 
 export default function MainPage() {
   const offerCards = useAppSelector((state) => state.offerCards);
+  const areOfferCardsLoading = useAppSelector((state) => state.areOfferCardsLoading);
   const currentCity = useAppSelector((state) => state.currentCity);
   const cityOfferCards = offerCards.filter((offerCard) => offerCard.city.name === currentCity);
+
+  if (areOfferCardsLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main className={`page__main page__main--index${cityOfferCards.length > 0 ? '' : ' page__main--index-empty'}`}>

@@ -7,3 +7,4 @@ export const changeCity = createAction<string>('app/changeCity');
 export const changeSorting = createAction<SortItem>('app/changeSorting');
 
 export const loadOfferCards = createAction<OfferCard[]>('data/loadOffers');
+export const setOfferCardsLoading = createAction<boolean>('data/setOfferCardsLoading');
