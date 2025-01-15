@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizarionStatus } from '../../const';
-import { getAuthorizationStatus } from '../../mocks/authorization-status';
 import Logo from '../logo';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logout } from '../../store/api-actions';
 
 type HeaderProps = {
   hasUserInfo: boolean;
@@ -9,7 +10,9 @@ type HeaderProps = {
 }
 
 export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) {
-  const authorizationStatus = getAuthorizationStatus();
+  const authorizationStatus = useAppSelector((state) => state.authorizarionStatus);
+  const {email, avatarUrl} = useAppSelector((state) => state.authData) || {};
+  const dispatch = useAppDispatch();
 
   return (
     <header className="header">
@@ -23,10 +26,13 @@ export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) 
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <div
+                      className="header__avatar-wrapper user__avatar-wrapper"
+                      style={{backgroundImage: avatarUrl ? `url(${avatarUrl})` : '', borderRadius: '50%'}}
+                    />
                     {authorizationStatus === AuthorizarionStatus.Auth ? (
                       <>
-                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                        <span className="header__user-name user__name">{email}</span>
                         <span className="header__favorite-count">{favoriteOffersCount}</span>
                       </>
                     ) : (
@@ -36,7 +42,14 @@ export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) 
                 </li>
                 {authorizationStatus === AuthorizarionStatus.Auth ? (
                   <li className="header__nav-item">
-                    <a className="header__nav-link" href="#">
+                    <a
+                      className="header__nav-link"
+                      href="#"
+                      onClick={(evt) => {
+                        evt.preventDefault();
+                        dispatch(logout());
+                      }}
+                    >
                       <span className="header__signout">Sign out</span>
                     </a>
                   </li>

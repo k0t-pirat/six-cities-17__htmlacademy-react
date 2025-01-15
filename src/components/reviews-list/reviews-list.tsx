@@ -1,5 +1,5 @@
 import { AuthorizarionStatus } from '../../const';
-import { getAuthorizationStatus } from '../../mocks/authorization-status';
+import { useAppSelector } from '../../hooks';
 import { Review } from '../../types/review';
 import ReviewForm from '../review-form';
 import ReviewItem from '../review-item';
@@ -9,7 +9,7 @@ type ReviewsListProps = {
 }
 
 export default function ReviewsList({reviews}: ReviewsListProps) {
-  const authorizationStatus = getAuthorizationStatus();
+  const authorizationStatus = useAppSelector((state) => state.authorizarionStatus);
 
   return (
     <section className="offer__reviews reviews">
