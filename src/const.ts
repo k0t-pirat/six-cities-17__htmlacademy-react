@@ -6,7 +6,7 @@ export enum AppRoute {
   Offer = '/offer/:id',
   Favorites = '/favorites',
   Login = '/login',
-  NotFound = '*',
+  NotFound = '/404',
 }
 
 export enum APIRoute {
@@ -28,4 +28,12 @@ export enum SortItem {
   PriceLow = 'Price: low to high',
   PriceHigh = 'Price: high to low',
   Rating = 'Top rated first',
+}
+
+export enum RequestStatus {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Uploading = 'Uploading',
+  Success = 'Success',
+  Error = 'Error',
 }

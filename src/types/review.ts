@@ -1,9 +1,17 @@
 import { User } from './user';
 
-export type Review = {
+type ReviewPayload = {
+  comment: string;
+  rating: number;
+}
+
+export type Review = ReviewPayload & {
   id: string;
   date: string;
   user: User;
-  comment: string;
-  rating: number;
+}
+
+export type UploadReveiwData = {
+  offerId: string;
+  reviewPayload: ReviewPayload;
 }
