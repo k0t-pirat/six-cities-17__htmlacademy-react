@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { OfferCard } from '../../types/offer';
 import OffersEmpty from '../offers-empty';
 import OffersList from '../offers-list';
@@ -12,7 +12,7 @@ type CityInfoProps = {
 
 export default function CityInfo({offerCards, currentCity}: CityInfoProps) {
   const [activeOfferId, setActiveOfferId] = useState('');
-  const mapPoints = getMapPoints(offerCards);
+  const mapPoints = useMemo(() => getMapPoints(offerCards), [offerCards]);
 
   return (
     <div className="cities">

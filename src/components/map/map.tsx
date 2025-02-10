@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import useMap from './use-map';
 import { MapPoint } from '../../types/offer';
 import { createMarker, Marker } from './marker';
@@ -13,8 +13,8 @@ const DEFAULT_CLASS_NAME = 'cities';
 
 export default function Map({mapPoints, activeOfferId, className = DEFAULT_CLASS_NAME}: MapProps) {
   const mapRef = useRef(null);
-  const currentCityLocation = mapPoints[0].city.location;
-  const shouldZoomOnScroll = className === DEFAULT_CLASS_NAME;
+  const currentCityLocation = useMemo(() => mapPoints[0].city.location, [mapPoints]) ;
+  const shouldZoomOnScroll = useMemo(() => className === DEFAULT_CLASS_NAME, [className]) ;
   const map = useMap(mapRef, currentCityLocation, shouldZoomOnScroll);
 
   useEffect(() => {

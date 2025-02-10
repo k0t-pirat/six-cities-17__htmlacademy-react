@@ -13,8 +13,8 @@ type OfferCardProps = {
 export default function OfferCard({offerCard, className, setActiveOfferId}: OfferCardProps) {
   const {isPremium, previewImage, price, isFavorite, rating, title, type} = offerCard;
 
-  const imageWidth = className === 'favorites' ? '150' : '260';
-  const imageHeight = className === 'favorites' ? '110' : '200';
+  const imageWidth = className === 'favorites' ? 150 : 260;
+  const imageHeight = className === 'favorites' ? 110 : 200;
 
   return (
     <article

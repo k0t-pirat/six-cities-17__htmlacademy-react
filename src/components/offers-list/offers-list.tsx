@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { sortOffers } from '../../helpers';
 import { useAppSelector } from '../../hooks';
 import { OfferCard as TOfferCard } from '../../types/offer';
@@ -10,7 +11,7 @@ type OffersListProps = {
   currentCity: string;
 }
 
-export default function OffersList({offerCards, setActiveOfferId, currentCity}: OffersListProps) {
+function OffersListTemplate({offerCards, setActiveOfferId, currentCity}: OffersListProps) {
   const currentSort = useAppSelector((state) => state.currentSort);
   const sortedOfferCards = sortOffers(offerCards, currentSort);
 
@@ -27,3 +28,6 @@ export default function OffersList({offerCards, setActiveOfferId, currentCity}: 
     </section>
   );
 }
+
+const OffersList = memo(OffersListTemplate);
+export default OffersList;

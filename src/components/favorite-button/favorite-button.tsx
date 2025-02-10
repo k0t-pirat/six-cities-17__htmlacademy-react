@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 type FavoriteButtonProps = {
   isFavorite: boolean;
   className?: string;
@@ -7,8 +9,8 @@ const DEFAULT_CLASS_NAME = 'place-card';
 
 export default function FavoriteButton({isFavorite, className = DEFAULT_CLASS_NAME} : FavoriteButtonProps) {
   const accessibileText = isFavorite ? 'In bookmarks' : 'To bookmarks';
-  const imgWidth = className === DEFAULT_CLASS_NAME ? 18 : 31;
-  const imgHeight = className === DEFAULT_CLASS_NAME ? 19 : 33;
+  const imgWidth = useMemo(() => className === DEFAULT_CLASS_NAME ? 18 : 31, [className]);
+  const imgHeight = useMemo(() => className === DEFAULT_CLASS_NAME ? 19 : 33, [className]);
 
   return (
     <button className={`${className}__bookmark-button button${isFavorite ? ` ${className}__bookmark-button--active` : ''}`} type="button">
