@@ -7,10 +7,10 @@ import { getAuthData, getAuthorizationStatus } from '../../store/user-data/selec
 
 type HeaderProps = {
   hasUserInfo: boolean;
-  favoriteOffersCount: number;
+  favoritesCount: string;
 }
 
-export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) {
+export default function Header({hasUserInfo, favoritesCount}: HeaderProps) {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const {email, avatarUrl} = useAppSelector(getAuthData) || {};
   const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) 
                     {authorizationStatus === AuthorizarionStatus.Auth ? (
                       <>
                         <span className="header__user-name user__name">{email}</span>
-                        <span className="header__favorite-count">{favoriteOffersCount}</span>
+                        <span className="header__favorite-count">{favoritesCount}</span>
                       </>
                     ) : (
                       <span className="header__login">Sign in</span>

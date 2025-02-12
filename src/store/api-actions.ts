@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Offer, OfferCard } from '../types/offer';
+import { Offer, OfferCard, OfferFavorite } from '../types/offer';
 import { AppDisaptch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
@@ -81,5 +81,22 @@ export const logout = createAsyncThunk<void, undefined, AppThunkArgs>(
   async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+  }
+);
+
+export const fetchFavorites = createAsyncThunk<OfferCard[], undefined, AppThunkArgs>(
+  'data/fetchFavorites',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<OfferCard[]>(APIRoute.Favorite);
+    return data;
+  }
+);
+
+export const updateFavorite = createAsyncThunk<OfferCard, {offerId: string; isFavorite: boolean}, AppThunkArgs>(
+  'data/updateFavorite',
+  async ({offerId, isFavorite: previousFavorite}, {extra: api}) => {
+    const {data} = await api.post<OfferFavorite>(`${APIRoute.Favorite}/${offerId}/${Number(!previousFavorite)}`);
+    const {id, title, type, price, city, location, isFavorite, isPremium, rating, previewImage} = data;
+    return {id, title, type, price, city, location, isFavorite, isPremium, rating, previewImage};
   }
 );

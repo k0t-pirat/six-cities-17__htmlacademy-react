@@ -12,7 +12,7 @@ type OfferContainerProps = {
 const MAX_IMAGES_COUNT = 6;
 
 export default function OfferContainer({currentOffer, mapPoints, children}: PropsWithChildren<OfferContainerProps>) {
-  const {images, isPremium, title, isFavorite, rating, bedrooms, maxAdults, price, goods, host, description} = currentOffer;
+  const {id: offerId, images, isPremium, title, rating, bedrooms, maxAdults, price, goods, host, description} = currentOffer;
 
   return (
     <section className="offer">
@@ -34,7 +34,7 @@ export default function OfferContainer({currentOffer, mapPoints, children}: Prop
           ) : null}
           <div className="offer__name-wrapper">
             <h1 className="offer__name">{title}</h1>
-            <FavoriteButton isFavorite={isFavorite} className="offer" />
+            <FavoriteButton offerId={offerId} className="offer" />
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">

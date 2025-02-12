@@ -18,3 +18,5 @@ export const appProcess = createSlice({
     },
   },
 });
+
+export const {changeCity, changeSorting} = appProcess.actions;

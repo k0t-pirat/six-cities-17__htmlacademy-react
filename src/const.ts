@@ -44,4 +44,5 @@ export enum NameSpace {
   CurrentOffer = 'CURRENT_OFFER',
   Main = 'MAIN',
   App = 'APP',
+  Favorite = 'FAVORITE',
 }

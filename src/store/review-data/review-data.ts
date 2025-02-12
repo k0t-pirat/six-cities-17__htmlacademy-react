@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NameSpace, RequestStatus } from '../../const';
 import { fetchReviews, uploadReview } from '../api-actions';
 import { Review } from '../../types/review';
@@ -11,7 +11,11 @@ const initialState = {
 export const reviewData = createSlice({
   name: NameSpace.Review,
   initialState,
-  reducers: {},
+  reducers: {
+    setReviewUploadStatus: (state, action: PayloadAction<RequestStatus>) => {
+      state.reviewsUploadStatus = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchReviews.fulfilled, (state, action) => {
@@ -29,4 +33,6 @@ export const reviewData = createSlice({
       });
   },
 });
+
+export const {setReviewUploadStatus} = reviewData.actions;
 

@@ -1,6 +1,6 @@
 import { memo, MouseEvent, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { changeCity } from '../../store/action';
+import { changeCity } from '../../store/app-process/app-process';
 
 type LocationItemProps = {
   cityName: string;

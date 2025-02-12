@@ -1,23 +1,23 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './components/layout';
-import { AppRoute } from './const';
-import MainPage from './pages/main-page';
-import OfferPage from './pages/offer-page';
-import FavoritesPage from './pages/favorites-page';
-import LoginPage from './pages/login-page';
-import NotFoundPage from './pages/not-found-page';
-import PrivateRoute from './components/private-route';
-import { getMockFavoriteOfferCards } from './mocks/offer-cards';
+import Layout from '../components/layout';
+import { AppRoute } from '../const';
+import MainPage from '../pages/main-page';
+import OfferPage from '../pages/offer-page';
+import FavoritesPage from '../pages/favorites-page';
+import LoginPage from '../pages/login-page';
+import NotFoundPage from '../pages/not-found-page';
+import PrivateRoute from '../components/private-route';
 import { HelmetProvider } from 'react-helmet-async';
+import useFetchFavorites from './use-fetch-favorites';
 
 export default function App() {
-  const favoriteOfferCards = getMockFavoriteOfferCards();
+  useFetchFavorites();
 
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} element={<Layout favoriteOffersCount={favoriteOfferCards.length} />}>
+          <Route path={AppRoute.Root} element={<Layout />}>
             <Route
               index
               element={<MainPage />}
@@ -30,7 +30,7 @@ export default function App() {
               path={AppRoute.Favorites}
               element={
                 <PrivateRoute>
-                  <FavoritesPage favoriteOfferCards={favoriteOfferCards} />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />

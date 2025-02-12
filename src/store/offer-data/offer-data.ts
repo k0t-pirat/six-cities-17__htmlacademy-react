@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchCurrentOffer, fetchNearOfferCards } from '../api-actions';
 import { NameSpace, RequestStatus } from '../../const';
 import { Offer, OfferCard } from '../../types/offer';
@@ -12,7 +12,11 @@ const initialState = {
 export const offerData = createSlice({
   name: NameSpace.CurrentOffer,
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentOfferStatus: (state, action: PayloadAction<RequestStatus>) => {
+      state.currentOfferStatus = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCurrentOffer.pending, (state) => {
@@ -33,3 +37,5 @@ export const offerData = createSlice({
       });
   }
 });
+
+export const {setCurrentOfferStatus} = offerData.actions;

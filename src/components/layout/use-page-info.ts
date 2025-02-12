@@ -45,12 +45,12 @@ const getPageInfo = (pathname: string, offersCount: number) => {
   return pageInfo[realPathname] || defaultPageInfo;
 };
 
-export default function usePageInfo(offersCount: number): PageInfo {
+export default function usePageInfo(offersCount: string): PageInfo {
   const {pathname} = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return getPageInfo(pathname, offersCount);
+  return getPageInfo(pathname, Number(offersCount));
 }

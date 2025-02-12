@@ -10,8 +10,11 @@ type PrivateRouteProps = {
 
 export default function PrivateRoute({children, reversed}: PropsWithChildren<PrivateRouteProps>) {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthStatusAccepted = reversed ?
+    authorizationStatus === AuthorizarionStatus.NoAuth || authorizationStatus === AuthorizarionStatus.Unknown :
+    authorizationStatus === AuthorizarionStatus.Auth || authorizationStatus === AuthorizarionStatus.Unknown;
 
-  return authorizationStatus === (reversed ? AuthorizarionStatus.NoAuth : AuthorizarionStatus.Auth)
+  return isAuthStatusAccepted
     ? children
     : <Navigate to={reversed ? AppRoute.Root : AppRoute.Login} replace />;
 }

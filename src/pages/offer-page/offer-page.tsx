@@ -8,9 +8,9 @@ import { fetchCurrentOffer, fetchNearOfferCards, fetchReviews } from '../../stor
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import Spinner from '../../components/spinner';
-import { setCurrentOfferStatus } from '../../store/action';
 import { getCurrentOffer, getCurrentOfferLoading, getNearOfferCards } from '../../store/offer-data/selectors';
 import { getReviews } from '../../store/review-data/selectors';
+import { setCurrentOfferStatus } from '../../store/offer-data/offer-data';
 
 export default function OfferPage() {
   const {id: offerId = ''} = useParams();

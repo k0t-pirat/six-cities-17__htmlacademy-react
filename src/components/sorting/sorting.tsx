@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { SortItem } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeSorting } from '../../store/action';
 import { getCurrentSort } from '../../store/app-process/selectors';
+import { changeSorting } from '../../store/app-process/app-process';
 
 export default function Sorting() {
   const sortSpanRef = useRef<HTMLElement>(null);

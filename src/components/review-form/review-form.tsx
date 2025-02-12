@@ -2,8 +2,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { uploadReview } from '../../store/api-actions';
 import { RequestStatus } from '../../const';
-import { setReviewUploadStatus } from '../../store/action';
 import { getReviewsUploadStatus } from '../../store/review-data/selectors';
+import { setReviewUploadStatus } from '../../store/review-data/review-data';
 
 const RATING_NUMBERS = [5, 4, 3, 2, 1];
 const TextLength = {

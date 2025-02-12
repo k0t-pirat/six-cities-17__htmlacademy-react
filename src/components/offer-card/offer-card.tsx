@@ -10,16 +10,18 @@ type OfferCardProps = {
   setActiveOfferId?: (id: string) => void;
 }
 
-export default function OfferCard({offerCard, className, setActiveOfferId}: OfferCardProps) {
-  const {isPremium, previewImage, price, isFavorite, rating, title, type} = offerCard;
+const FAVORITES_CLASS_NAME = 'favorites';
 
-  const imageWidth = className === 'favorites' ? 150 : 260;
-  const imageHeight = className === 'favorites' ? 110 : 200;
+export default function OfferCard({offerCard, className, setActiveOfferId}: OfferCardProps) {
+  const {id: offerId, isPremium, previewImage, price, rating, title, type} = offerCard;
+
+  const imageWidth = className === FAVORITES_CLASS_NAME ? 150 : 260;
+  const imageHeight = className === FAVORITES_CLASS_NAME ? 110 : 200;
 
   return (
     <article
       className={`${className}__card place-card`}
-      onMouseEnter={setActiveOfferId && (() => setActiveOfferId(offerCard.id))}
+      onMouseEnter={setActiveOfferId && (() => setActiveOfferId(offerId))}
       onMouseLeave={setActiveOfferId && (() => setActiveOfferId(''))}
     >
       {isPremium ? (
@@ -28,17 +30,17 @@ export default function OfferCard({offerCard, className, setActiveOfferId}: Offe
         </div>
       ) : null}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-        <Link to={AppRoute.Offer.replace(ID_PARAM, offerCard.id)}>
+        <Link to={AppRoute.Offer.replace(ID_PARAM, offerId)}>
           <img className="place-card__image" src={previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
         </Link>
       </div>
-      <div className={`place-card__info${className === 'favorites' ? ' favorites__card-info' : ''}`}>
+      <div className={`place-card__info${className === FAVORITES_CLASS_NAME ? ' favorites__card-info' : ''}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <FavoriteButton isFavorite={isFavorite} />
+          <FavoriteButton offerId={offerId} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -47,7 +49,7 @@ export default function OfferCard({offerCard, className, setActiveOfferId}: Offe
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer.replace(ID_PARAM, offerCard.id)}>{title}</Link>
+          <Link to={AppRoute.Offer.replace(ID_PARAM, offerId)}>{title}</Link>
         </h2>
         <p className="place-card__type">{upFirstLetter(type)}</p>
       </div>

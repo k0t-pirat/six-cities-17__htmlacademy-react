@@ -1,2 +1,2 @@
 import { AuthorizarionStatus } from '../const';
-export const getAuthorizationStatus = () => AuthorizarionStatus.Auth;
+export const getMockAuthorizationStatus = () => AuthorizarionStatus.Auth;
