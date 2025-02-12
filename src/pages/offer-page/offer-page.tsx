@@ -9,17 +9,17 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import Spinner from '../../components/spinner';
 import { setCurrentOfferStatus } from '../../store/action';
-
-const MAX_NEAR_OFFERS_COUNT = 3;
+import { getCurrentOffer, getCurrentOfferLoading, getNearOfferCards } from '../../store/offer-data/selectors';
+import { getReviews } from '../../store/review-data/selectors';
 
 export default function OfferPage() {
   const {id: offerId = ''} = useParams();
   const dispatch = useAppDispatch();
 
-  const currentOffer = useAppSelector((state) => state.currentOffer);
-  const isLoading = useAppSelector((state) => state.currentOfferStatus === RequestStatus.Idle || state.currentOfferStatus === RequestStatus.Loading);
-  const nearOfferCards = useAppSelector((state) => state.nearOfferCards.slice(0, MAX_NEAR_OFFERS_COUNT));
-  const offerReviews = useAppSelector((state) => state.reviews);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const isLoading = useAppSelector(getCurrentOfferLoading);
+  const nearOfferCards = useAppSelector(getNearOfferCards);
+  const offerReviews = useAppSelector(getReviews);
 
   useEffect(() => {
     if (offerId) {

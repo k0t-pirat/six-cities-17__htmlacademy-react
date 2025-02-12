@@ -1,13 +1,14 @@
 import CityInfo from '../../components/city-info';
 import Locations from '../../components/locations';
 import Spinner from '../../components/spinner/spinner';
-import { RequestStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getCurrentCity } from '../../store/app-process/selectors';
+import { getOfferCards, getOfferCardsLoading } from '../../store/main-data/selectors';
 
 export default function MainPage() {
-  const offerCards = useAppSelector((state) => state.offerCards);
-  const areOfferCardsLoading = useAppSelector((state) => state.areOfferCardsLoading === RequestStatus.Loading);
-  const currentCity = useAppSelector((state) => state.currentCity);
+  const offerCards = useAppSelector(getOfferCards);
+  const areOfferCardsLoading = useAppSelector(getOfferCardsLoading);
+  const currentCity = useAppSelector(getCurrentCity);
   const cityOfferCards = offerCards.filter((offerCard) => offerCard.city.name === currentCity);
 
   if (areOfferCardsLoading) {

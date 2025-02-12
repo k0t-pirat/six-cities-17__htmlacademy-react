@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { uploadReview } from '../../store/api-actions';
 import { RequestStatus } from '../../const';
 import { setReviewUploadStatus } from '../../store/action';
+import { getReviewsUploadStatus } from '../../store/review-data/selectors';
 
 const RATING_NUMBERS = [5, 4, 3, 2, 1];
 const TextLength = {
@@ -18,7 +19,7 @@ export default function ReviewForm({offerId}: ReviewFormProps) {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
   const dispatch = useAppDispatch();
-  const reviewUploadStatus = useAppSelector((state) => state.reviewUploadStatus);
+  const reviewUploadStatus = useAppSelector(getReviewsUploadStatus);
 
   const isFormActive = text.length >= TextLength.Min && text.length < TextLength.Max && rating > 0 && reviewUploadStatus !== RequestStatus.Uploading;
 

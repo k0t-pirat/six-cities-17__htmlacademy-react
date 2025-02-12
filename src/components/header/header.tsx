@@ -3,6 +3,7 @@ import { AppRoute, AuthorizarionStatus } from '../../const';
 import Logo from '../logo';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logout } from '../../store/api-actions';
+import { getAuthData, getAuthorizationStatus } from '../../store/user-data/selectors';
 
 type HeaderProps = {
   hasUserInfo: boolean;
@@ -10,8 +11,8 @@ type HeaderProps = {
 }
 
 export default function Header({hasUserInfo, favoriteOffersCount}: HeaderProps) {
-  const authorizationStatus = useAppSelector((state) => state.authorizarionStatus);
-  const {email, avatarUrl} = useAppSelector((state) => state.authData) || {};
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const {email, avatarUrl} = useAppSelector(getAuthData) || {};
   const dispatch = useAppDispatch();
 
   return (

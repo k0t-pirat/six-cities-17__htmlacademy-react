@@ -4,6 +4,7 @@ import { useAppSelector } from '../../hooks';
 import { OfferCard as TOfferCard } from '../../types/offer';
 import OfferCard from '../offer-card';
 import Sorting from '../sorting';
+import { getCurrentSort } from '../../store/app-process/selectors';
 
 type OffersListProps = {
   offerCards: TOfferCard[];
@@ -12,7 +13,7 @@ type OffersListProps = {
 }
 
 function OffersListTemplate({offerCards, setActiveOfferId, currentCity}: OffersListProps) {
-  const currentSort = useAppSelector((state) => state.currentSort);
+  const currentSort = useAppSelector(getCurrentSort);
   const sortedOfferCards = sortOffers(offerCards, currentSort);
 
   return (

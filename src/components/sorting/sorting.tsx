@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { SortItem } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeSorting } from '../../store/action';
+import { getCurrentSort } from '../../store/app-process/selectors';
 
 export default function Sorting() {
   const sortSpanRef = useRef<HTMLElement>(null);
   const [isMenuOpened, setMenuOpened] = useState(false);
   const dispatch = useAppDispatch();
-  const currentSort = useAppSelector((state) => state.currentSort);
+  const currentSort = useAppSelector(getCurrentSort);
 
   useEffect(() => {
     const hideSortList = (evt: MouseEvent) => {

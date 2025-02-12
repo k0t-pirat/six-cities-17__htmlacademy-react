@@ -1,5 +1,6 @@
 import { AuthorizarionStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-data/selectors';
 import { Review } from '../../types/review';
 import ReviewForm from '../review-form';
 import ReviewItem from '../review-item';
@@ -10,7 +11,7 @@ type ReviewsListProps = {
 }
 
 export default function ReviewsList({reviews, offerId}: ReviewsListProps) {
-  const authorizationStatus = useAppSelector((state) => state.authorizarionStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <section className="offer__reviews reviews">

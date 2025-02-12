@@ -37,3 +37,11 @@ export enum RequestStatus {
   Success = 'Success',
   Error = 'Error',
 }
+
+export enum NameSpace {
+  User = 'USER',
+  Review = 'REVIEW',
+  CurrentOffer = 'CURRENT_OFFER',
+  Main = 'MAIN',
+  App = 'APP',
+}
