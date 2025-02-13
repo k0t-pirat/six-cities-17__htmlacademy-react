@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { FavoritesByCity as TFavoritesByCity } from '../../types/offer';
 import OfferCard from '../offer-card';
+import LocationItem from '../location-item';
 
 type FavoritesByCityProps = {
   favoritesByCity: TFavoritesByCity;
@@ -15,11 +14,7 @@ export default function FavoritesByCity({favoritesByCity}: FavoritesByCityProps)
         {Object.entries(favoritesByCity).map(([cityName, offerCards]) => (
           <li key={cityName} className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
-              <div className="locations__item">
-                <Link to={AppRoute.Root} className="locations__item-link">
-                  <span>{cityName}</span>
-                </Link>
-              </div>
+              <LocationItem cityName={cityName} />
             </div>
             <div className="favorites__places">
               {offerCards.map((card) => (
